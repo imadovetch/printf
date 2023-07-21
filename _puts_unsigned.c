@@ -5,7 +5,7 @@ int _puts_unsigned(va_list args) {
     int count = 0;
 
     if (n == 0) {
-        putchar('0');
+        _putchar('0');
         count++;
     } else {
         unsigned int temp = n;
@@ -24,7 +24,7 @@ int _puts_unsigned(va_list args) {
             int digit = n / temp;
             n %= temp;
             temp /= 10;
-            putchar('0' + digit);
+            _putchar('0' + digit);
         }
     }
     

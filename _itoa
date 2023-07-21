@@ -1,0 +1,32 @@
+#include "main.h"
+
+int _itoa(va_list args) {
+    int i = va_arg(args, int);
+    int j = 0;
+    int temp = i;
+    int len = 0;
+    
+    if (i < 0)
+    {
+        _putchar('-');
+        i = -i;
+        len++;
+    }
+
+    // calculate the number of digits to determine the length of the number
+    while (temp != 0)
+    {
+        len++;
+        temp /= 10;
+    }
+
+    // recursively print each digit
+    if (i >= 10)
+    {
+        _itoa(i / 10);
+    }
+    
+    _putchar((i % 10) + '0');
+    return len;
+}
+

@@ -1,6 +1,6 @@
 #include "main.h"
 
-int _putchar(char c);  // Make sure you have implemented this function
+
 
 int print_HEX(va_list args) {
     unsigned int num = va_arg(args, unsigned int);
