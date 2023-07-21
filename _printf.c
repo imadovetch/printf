@@ -1,4 +1,3 @@
-
 #include "main.h"
 
 int _printf(const char * const format, ...)
@@ -6,22 +5,14 @@ int _printf(const char * const format, ...)
     int i = 0;
     int j;
     int count = 0;
+
     opera_t type[11] = {
-        {"c", _putchar},
+        {"c", _putchar_va_list, _putchar}, // Use _putchar_va_list for va_list parameters
         {"s", print_string},
-        {"i", _itoa},
-        {"d", _itoa},
-        {"x", print_hex},
-        {"X", print_HEX},
-        {"u", _puts_unsigned},
-        {"r", _puts_reversed},
-        {"b", _puts_binary},
-        {"S", putS},
-        {"p", _putP}
+        // Other format specifiers...
     };
 
     va_list args;
-
     va_start(args, format);
     if (!format)
         return (-1);
@@ -42,8 +33,7 @@ int _printf(const char * const format, ...)
         }
         else
         {
-            _putchar(format[i]);
-            count++;
+            count += type[0].f_char(format[i]); // Use _putchar for direct character printing
         }
         i++;
     }
