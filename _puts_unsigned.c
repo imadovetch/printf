@@ -1,6 +1,7 @@
 #include "main.h"
 
-int _puts_unsigned(unsigned int n) {
+int _puts_unsigned(va_list args) {
+    unsigned int n = va_arg(args, unsigned int);
     int count = 0;
 
     if (n == 0) {

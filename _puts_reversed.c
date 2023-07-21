@@ -1,6 +1,7 @@
 #include "main.h"
 
-int _puts_reversed(char *str) {
+int _puts_reversed(va_list args) {
+    char *str = va_arg(args, char*);
     int length = 0;
     char *start = str;
 

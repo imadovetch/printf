@@ -1,6 +1,7 @@
 #include "main.h"
 
-int print_octal(int num) {
+int print_octal(va_list args) {
+    int num = va_arg(args, int);
     char buffer[20];
     int index = 0;
     do {
