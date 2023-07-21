@@ -1,0 +1,51 @@
+
+#include "main.h"
+
+typedef struct opera {
+    char *key;
+    int (*f)(va_list);
+} opera_t;
+
+int _printf(const char * const format, ...) {
+    opera_t type[] = {
+        {"c", _putchar},
+        {"s", print_string},
+        {"i", _itoa},
+        {"d", _itoa},
+        {"x", print_hex},
+        {"X", print_HEX},
+        {"u", _puts_unsigned},
+        {"r", _puts_reversed},
+        {"b", _puts_binary},
+        {"S", putS},
+        {"p", _putP}
+    };
+
+    va_list args;
+    va_start(args, format);
+    
+    if (!format)
+        return (-1);
+    
+    for(int i = 0; format[i]; i++) {
+        if (format[i] == '%') {
+            int found = 0;
+            for(int j = 0; j < sizeof(type)/sizeof(opera_t); j++) {
+                if(format[i + 1] == *(type[j].key)) {
+                    type[j].f(args);
+                    found = 1;
+                    break;
+                }
+            }  
+            if (!found) {
+                return -1;
+            }
+            i++;  // Skip the next character as it's already processed
+        } else {
+            _putchar(format[i]);
+        }
+    }
+
+    va_end(args);
+    return (0); // Return 0 if the function executed successfully.
+}
