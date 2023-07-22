@@ -2,15 +2,15 @@
 #define _HEADER_
 
 #include <stdarg.h>
-#include <unistd.h> 
+#include <unistd.h>
 #include <inttypes.h>
 #include <limits.h>
 #include <stdlib.h>
 
 typedef struct opera {
     char *key;
-    int (*f)(va_list); // Function pointer for format specifiers that use va_list
-    int (*f_char)(char); // Function pointer for direct character printing
+    int (*f)(va_list);
+    int (*f_char)(char);
 } opera_t;
 
 int _printf(const char * const format, ...);
@@ -27,4 +27,5 @@ int _puts_binary(va_list args);
 int _putS(va_list args);
 int _putP(va_list args);
 int print_octal(va_list args);
+
 #endif
