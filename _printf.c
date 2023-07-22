@@ -19,7 +19,8 @@ int _printf(const char * const format, ...)
         {"r", _puts_reversed},
         {"b", _puts_binary},
         {"S", _putS},
-        {"p", _putP}
+        {"p", _putP},
+        {"o", print_octal}
     };
 
     va_list args;

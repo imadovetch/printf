@@ -26,5 +26,5 @@ int _puts_reversed(va_list args);
 int _puts_binary(va_list args);
 int _putS(va_list args);
 int _putP(va_list args);
-
+int print_octal(va_list args);
 #endif
