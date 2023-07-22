@@ -5,6 +5,7 @@
 #include <unistd.h> 
 #include <inttypes.h>
 #include <limits.h>
+#include <stdlib.h>
 
 typedef struct opera {
     char *key;
@@ -24,6 +25,6 @@ int _puts_unsigned(va_list args);
 int _puts_reversed(va_list args);
 int _puts_binary(va_list args);
 int _putS(va_list args);
-//int _putP(va_list args);
+int _putP(va_list args);
 
 #endif

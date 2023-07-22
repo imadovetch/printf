@@ -18,8 +18,8 @@ int _printf(const char * const format, ...)
         {"u", _puts_unsigned},
         {"r", _puts_reversed},
         {"b", _puts_binary},
-        {"S", _putS}//,
-       // {"p", _putP}
+        {"S", _putS},
+        {"p", _putP}
     };
 
     va_list args;
@@ -30,21 +30,40 @@ int _printf(const char * const format, ...)
 
     while (format[i])
     {
-        if (format[i] == '%' && format[i + 1])
+        int x = i, spa;
+        
+        if (format[x] == '%' && format[x + 1])
         {
+            if(format[x] == '%' && format[x + 1] == '%')
+            {     
+                 _putchar(format[x]);
+                    i += 2;
+                    continue;
+            }
+            if(format[x + 1] == ' ' && format[x + 2])
+            {   for(spa = (x + 1);spa < 100;spa++){
+                    if(format[spa] == ' ')
+                    {
+                        if(spa == i + 1)
+                            _putchar(' ');
+                        x++; 
+                    }else{i = x ;break;}
+                }
+            }
+            
             for(j = 0; j < 11; j++)
             {
-                if(format[i + 1] == type[j].key[0])
+                if(format[x + 1] == type[j].key[0])
                 {
                     count += type[j].f(args);
-                    i++;  // Skip the format specifier
+                    i++;  
                     break;
                 }
             }	
         }
         else
         {
-            _putchar(format[i]);
+            _putchar(format[x]);
             count++;
         }
         i++;
