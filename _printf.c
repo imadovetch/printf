@@ -1,5 +1,5 @@
-
 #include "main.h"
+
 
 /**
  * _printf - Custom printf function.
@@ -12,8 +12,10 @@ int _printf(const char * const format, ...)
 	int i = 0;
 	int j;
 	int count = 0;
+    int structsize; 
+    bool Bool;
 
-	  opera_t type[11] = {
+    opera_t type[] = {
         {"c", _putchar_va_list, NULL},
         {"s", print_string, NULL},
         {"i", _itoa, NULL},
@@ -21,13 +23,17 @@ int _printf(const char * const format, ...)
         {"x", print_hex, NULL},
         {"X", print_HEX, NULL},
         {"u", _puts_unsigned, NULL},
-        {"r", _puts_reversed, NULL},
+        /*{"r", _puts_reversed, NULL},*/
         {"b", _puts_binary, NULL},
         {"S", _putS, NULL},
+        {"o", print_octal, NULL},
         {"p", _putP, NULL},
+        /*{"R", printf_rot13, NULL}*/
     };
 
-	va_list args;
+    va_list args;
+
+    structsize = sizeof(type) / sizeof(type[0]);
 
 	va_start(args, format);
 	if (!format)
@@ -43,7 +49,7 @@ int _printf(const char * const format, ...)
 		{
 			if (format[x] == '%' && format[x + 1] == '%')
 			{
-				_putchar(format[x]);
+				count += _putchar(format[x]);
 				i += 2;
 				continue;
 			}
@@ -65,15 +71,27 @@ int _printf(const char * const format, ...)
 				}
 			}
 
-			for (j = 0; j < 11; j++)
+            Bool = true;
+            
+			for (j = 0; j < structsize; j++)
 			{
+                if(format[x] == '%' && format[x + 1] != type[j].key[0] && format[x + 1] != ' ')
+                {
+                    Bool = true;
+                }
 				if (format[x + 1] == type[j].key[0])
 				{
+                    Bool = false;
 					count += type[j].f(args);
 					i++;
 					break;
 				}
 			}
+
+            if (Bool == true)
+            {
+                _putchar('%');
+            }
 		}
 		else
 		{
@@ -86,3 +104,5 @@ int _printf(const char * const format, ...)
 	va_end(args);
 	return (count);
 }
+
+

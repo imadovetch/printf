@@ -8,11 +8,19 @@
  */
 int print_string(va_list args)
 {
-    char *str = va_arg(args, char*); /* Extract the string argument from va_list */
+    char *str;
+    int num_written;
+    int len;
+    
+    str = va_arg(args, char*);
+    if(str == NULL)
+    {
+         int num_written = write(1, "(null)", 6);
+        return num_written;
+    } 
 
-    int num_written; /* Declare the variable here */
-
-    int len = 0;
+   
+    len = 0;
     while (str[len] != '\0')
     {
         len++;

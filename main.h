@@ -6,6 +6,7 @@
 #include <inttypes.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct opera {
     char *key;
@@ -27,5 +28,5 @@ int _puts_binary(va_list args);
 int _putS(va_list args);
 int _putP(va_list args);
 int print_octal(va_list args);
-
+int printf_rot13(va_list args);
 #endif

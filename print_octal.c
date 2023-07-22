@@ -8,9 +8,9 @@
  */
 int print_octal(va_list args)
 {
-    int num = va_arg(args, int);
-    int num_written = 0; /* Declare the variable here */
-    char buffer[20];
+    unsigned int num = va_arg(args, unsigned int);
+    char buffer[22];
+    int num_written = 0;
     int index = 0;
 
 
@@ -28,12 +28,12 @@ int print_octal(va_list args)
         num /= 8;
     }
 
-    /* Print the octal number by reversing the buffer */
+
     while (index > 0)
     {
         _putchar(buffer[--index]);
         num_written++;
     }
 
-    return (num_written);
+    return num_written;
 }
