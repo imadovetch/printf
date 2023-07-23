@@ -43,33 +43,38 @@ int _printf(const char * const format, ...)
     while (format[i])
     {
         int x = i, spa;
-
+		
         if (format[x] == '%' && format[x + 1])
         {
-            if (!format[x + 1])
+            
+            
+
+            if (format[x] == '%' && format[x + 1] == '%')
             {
-                _putchar('-');
-                count--;
+                count += _putchar(format[x]);
+                i += 2;
+                continue;
             }
 
-            if (!format[x + 1] && format[x + 2])
+            if (format[x + 1] == ' ' && format[x + 2])
             {
-                count++;
+                for (spa = (x + 1); spa < 100; spa++)
+                {
+                    if (format[spa] == ' ')
+                    {
+                        if (spa == i + 1)
+                            _putchar(' ');
+                        x++;
+                    }
+                    else
+                    {
+                        i = x;
+                        break;
+                    }
+                }
             }
 
-            // Handle the flag characters: +, space, #
             Bool = true;
-            char flag_plus = 0, flag_space = 0, flag_hash = 0;
-            while (format[x + 1] == '+' || format[x + 1] == ' ' || format[x + 1] == '#')
-            {
-                if (format[x + 1] == '+')
-                    flag_plus = 1;
-                else if (format[x + 1] == ' ')
-                    flag_space = 1;
-                else if (format[x + 1] == '#')
-                    flag_hash = 1;
-                x++;
-            }
 
             for (j = 0; j < structsize; j++)
             {
@@ -80,22 +85,7 @@ int _printf(const char * const format, ...)
                 if (format[x + 1] == type[j].key[0])
                 {
                     Bool = false;
-                    if (flag_plus && (type[j].key[0] == 'd' || type[j].key[0] == 'i'))
-                        _putchar('+');
-                    else if (flag_space && (type[j].key[0] == 'd' || type[j].key[0] == 'i'))
-                        _putchar(' ');
-
                     count += type[j].f(args);
-
-                    // Handle the flag character: #
-                    if (flag_hash && type[j].key[0] == 'o')
-                        _putchar('0');
-                    else if (flag_hash && (type[j].key[0] == 'x' || type[j].key[0] == 'X'))
-                    {
-                        _putchar('0');
-                        _putchar(type[j].key[0]);
-                    }
-
                     i++;
                     break;
                 }
@@ -117,6 +107,5 @@ int _printf(const char * const format, ...)
     va_end(args);
     return (count);
 }
-
 
 
