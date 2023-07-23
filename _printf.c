@@ -14,21 +14,21 @@ int _printf(const char * const format, ...)
     int structsize;
     bool Bool;
 
-opera_t type[] = {
-    {"c", 0, _putchar_va_list, NULL},
-    {"s", 0, print_string, NULL},
-    {"i", 0, _itoa, NULL},
-    {"d", 0, _itoa, NULL},
-    {"x", 0, print_hex, NULL},
-    {"X", 0, print_HEX, NULL},
-    {"u", 0, _puts_unsigned, NULL},
-    {"r", 0, _puts_reversed, NULL},
-    {"b", 0, _puts_binary, NULL},
-    {"S", 0, _putS, NULL},
-    {"o", 0, print_octal, NULL},
-    {"p", 0, _putP, NULL},
-    {"R", 0, printf_rot13, NULL}
-};
+    opera_t type[] = {
+        {"c", _putchar_va_list, NULL},
+        {"s", print_string, NULL},
+        {"i", _itoa, NULL},
+        {"d", _itoa, NULL},
+        {"x", print_hex, NULL},
+        {"X", print_HEX, NULL},
+        {"u", _puts_unsigned, NULL},
+        {"r", _puts_reversed, NULL},
+        {"b", _puts_binary, NULL},
+        {"S", _putS, NULL},
+        {"o", print_octal, NULL},
+        {"p", _putP, NULL},
+        {"R", printf_rot13, NULL}
+    };
 
     va_list args;
 
@@ -87,7 +87,6 @@ opera_t type[] = {
                     Bool = false;
                     count += type[j].f(args);
                     i++;
-                    type[j].flags = get_flags(format, &i);
                     break;
                 }
             }

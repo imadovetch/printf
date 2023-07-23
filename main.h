@@ -15,7 +15,6 @@
 #define HASH 8
 #define SPACE 16
 
-
 typedef struct opera {
     char *key;
     int flags;
