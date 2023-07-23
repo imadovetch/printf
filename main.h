@@ -8,16 +8,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/* PRINTF FLAGS */
-#define MINUS 1
-#define PLUS 2
-#define ZERO 4
-#define HASH 8
-#define SPACE 16
-
 typedef struct opera {
     char *key;
-    int flags;
     int (*f)(va_list);
     int (*f_char)(char);
 } opera_t;
@@ -37,5 +29,4 @@ int _putS(va_list args);
 int _putP(va_list args);
 int print_octal(va_list args);
 int printf_rot13(va_list args);
-int get_flags(const char *format, int *i);
 #endif
