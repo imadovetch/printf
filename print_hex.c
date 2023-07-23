@@ -3,11 +3,10 @@
 /**
  * print_hex - Prints an unsigned integer in hexadecimal format.
  * @args: A va_list with the unsigned integer to print as an argument.
- * @flags: The flags indicating special formatting options (unused in this function).
  *
  * Return: The number of characters printed (excluding the null byte).
  */
-int print_hex(va_list args, int flags)
+int print_hex(va_list args)
 {
     unsigned int num = va_arg(args, unsigned int);
     int num_written = 0; /* Declare the variable here */

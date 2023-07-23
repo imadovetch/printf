@@ -3,11 +3,10 @@
 /**
  * print_HEX - Prints an unsigned integer in hexadecimal format (capital letters).
  * @args: A va_list with the unsigned integer to print as an argument.
- * @flags: The flags indicating special formatting options (unused in this function).
  *
  * Return: The number of characters printed (excluding the null byte).
  */
-int print_HEX(va_list args, int flags)
+int print_HEX(va_list args)
 {
     unsigned int num = va_arg(args, unsigned int);
     char buffer[20];
@@ -21,11 +20,12 @@ int print_HEX(va_list args, int flags)
         num /= 16;
     } while (num > 0);
 
+    
     num_written = 0;
     while (index > 0)
     {
         num_written += _putchar(buffer[--index]);
     }
 
-    return num_written;
+    return (num_written);
 }

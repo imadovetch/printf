@@ -13,23 +13,22 @@ int _printf(const char * const format, ...)
     int count = 0;
     int structsize;
     bool Bool;
-    int flags = 0;
 
-    opera_t type[] = {
-        {"c", 0, _putchar_va_list},
-        {"s", 0, print_string},
-        {"i", 0, _itoa},
-        {"d", 0, _itoa},
-        {"x", 0, print_hex},
-        {"X", 0, print_HEX},
-        {"u", 0, _puts_unsigned},
-        {"r", 0, _puts_reversed},
-        {"b", 0, _puts_binary},
-        {"S", 0, _putS},
-        {"o", 0, print_octal},
-        {"p", 0, _putP},
-        {"R", 0, printf_rot13}
-    };
+opera_t type[] = {
+    {"c", 0, _putchar_va_list, NULL},
+    {"s", 0, print_string, NULL},
+    {"i", 0, _itoa, NULL},
+    {"d", 0, _itoa, NULL},
+    {"x", 0, print_hex, NULL},
+    {"X", 0, print_HEX, NULL},
+    {"u", 0, _puts_unsigned, NULL},
+    {"r", 0, _puts_reversed, NULL},
+    {"b", 0, _puts_binary, NULL},
+    {"S", 0, _putS, NULL},
+    {"o", 0, print_octal, NULL},
+    {"p", 0, _putP, NULL},
+    {"R", 0, printf_rot13, NULL}
+};
 
     va_list args;
 
@@ -44,9 +43,12 @@ int _printf(const char * const format, ...)
     while (format[i])
     {
         int x = i, spa;
-
+		
         if (format[x] == '%' && format[x + 1])
         {
+            
+            
+
             if (format[x] == '%' && format[x + 1] == '%')
             {
                 count += _putchar(format[x]);
@@ -83,9 +85,9 @@ int _printf(const char * const format, ...)
                 if (format[x + 1] == type[j].key[0])
                 {
                     Bool = false;
-                    count += type[j].f(args, flags);
+                    count += type[j].f(args);
                     i++;
-                    flags = type[j].flags = get_flags(format, &i);
+                    type[j].flags = get_flags(format, &i);
                     break;
                 }
             }
@@ -106,3 +108,5 @@ int _printf(const char * const format, ...)
     va_end(args);
     return (count);
 }
+
+
