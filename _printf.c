@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 /**
  * _printf - Custom printf function.
  * @format: The format string to print.
@@ -9,10 +8,10 @@
  */
 int _printf(const char * const format, ...)
 {
-	int i = 0;
-	int j;
-	int count = 0;
-    int structsize; 
+    int i = 0;
+    int j;
+    int count = 0;
+    int structsize;
     bool Bool;
 
     opera_t type[] = {
@@ -23,86 +22,90 @@ int _printf(const char * const format, ...)
         {"x", print_hex, NULL},
         {"X", print_HEX, NULL},
         {"u", _puts_unsigned, NULL},
-        /*{"r", _puts_reversed, NULL},*/
+        {"r", _puts_reversed, NULL},
         {"b", _puts_binary, NULL},
         {"S", _putS, NULL},
         {"o", print_octal, NULL},
         {"p", _putP, NULL},
-        /*{"R", printf_rot13, NULL}*/
+        {"R", printf_rot13, NULL}
     };
 
     va_list args;
 
     structsize = sizeof(type) / sizeof(type[0]);
 
-	va_start(args, format);
-	if (!format)
-	{
-		return (-1);
-	}
+    va_start(args, format);
+    if (!format)
+    {
+        return (-1);
+    }
 
-	while (format[i])
-	{
-		int x = i, spa;
+    while (format[i])
+    {
+        int x = i, spa;
+		
+        if (format[x] == '%' && format[x + 1])
+        {
+            
+            
 
-		if (format[x] == '%' && format[x + 1])
-		{
-			if (format[x] == '%' && format[x + 1] == '%')
-			{
-				count += _putchar(format[x]);
-				i += 2;
-				continue;
-			}
-			if (format[x + 1] == ' ' && format[x + 2])
-			{
-				for (spa = (x + 1); spa < 100; spa++)
-				{
-					if (format[spa] == ' ')
-					{
-						if (spa == i + 1)
-							_putchar(' ');
-						x++;
-					}
-					else
-					{
-						i = x;
-						break;
-					}
-				}
-			}
+            if (format[x] == '%' && format[x + 1] == '%')
+            {
+                count += _putchar(format[x]);
+                i += 2;
+                continue;
+            }
+
+            if (format[x + 1] == ' ' && format[x + 2])
+            {
+                for (spa = (x + 1); spa < 100; spa++)
+                {
+                    if (format[spa] == ' ')
+                    {
+                        if (spa == i + 1)
+                            _putchar(' ');
+                        x++;
+                    }
+                    else
+                    {
+                        i = x;
+                        break;
+                    }
+                }
+            }
 
             Bool = true;
-            
-			for (j = 0; j < structsize; j++)
-			{
-                if(format[x] == '%' && format[x + 1] != type[j].key[0] && format[x + 1] != ' ')
+
+            for (j = 0; j < structsize; j++)
+            {
+                if (format[x] == '%' && format[x + 1] != type[j].key[0] && format[x + 1] != ' ')
                 {
                     Bool = true;
                 }
-				if (format[x + 1] == type[j].key[0])
-				{
+                if (format[x + 1] == type[j].key[0])
+                {
                     Bool = false;
-					count += type[j].f(args);
-					i++;
-					break;
-				}
-			}
+                    count += type[j].f(args);
+                    i++;
+                    break;
+                }
+            }
 
             if (Bool == true)
             {
                 _putchar('%');
             }
-		}
-		else
-		{
-			_putchar(format[x]);
-			count++;
-		}
-		i++;
-	}
+        }
+        else
+        {
+            _putchar(format[x]);
+            count++;
+        }
+        i++;
+    }
 
-	va_end(args);
-	return (count);
+    va_end(args);
+    return (count);
 }
 
 
