@@ -9,24 +9,31 @@
 int print_string(va_list args)
 {
     char *str;
-    int num_written;
-    int len;
-    
-    str = va_arg(args, char*);
-    if(str == NULL)
-    {
-         int num_written = write(1, "(null)", 6);
-        return num_written;
-    } 
+    int num_written = 0;
+    int i;
 
-   
-    len = 0;
-    while (str[len] != '\0')
+    str = va_arg(args, char*);
+    if (str == NULL)
     {
-        len++;
+        num_written += write(1, "(null)", 6);
+        return num_written;
     }
 
-    num_written = write(1, str, len); /* Print the string to the standard output */
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (str[i] >= 32 && str[i] <= 126)
+        {
+            _putchar(str[i]);
+            num_written++;
+        }
+        else
+        {
+            num_written += _putchar('\\');
+            num_written += _putchar('x');
+            num_written += _putchar('0' + (str[i] / 16));
+            num_written += _putchar((str[i] % 16 < 10) ? '0' + (str[i] % 16) : 'A' + (str[i] % 16 - 10));
+        }
+    }
 
-    return (num_written);
+    return num_written;
 }
