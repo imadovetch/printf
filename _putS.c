@@ -3,10 +3,11 @@
 /**
  * _putS - Prints a string (char array) to the standard output (stdout).
  * @args: A va_list with the string to print as an argument.
+ * @flags: The flags indicating special formatting options (unused in this function).
  *
  * Return: The number of characters written (excluding the null byte).
  */
-int _putS(va_list args)
+int _putS(va_list args, int flags)
 {
     char *str = va_arg(args, char*); /* Retrieve the string from va_list */
     int num_written = 0;

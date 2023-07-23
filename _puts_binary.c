@@ -3,10 +3,11 @@
 /**
  * _puts_binary - Prints the binary representation of an unsigned integer.
  * @args: A va_list with the unsigned integer to print as an argument.
+ * @flags: The flags indicating special formatting options (unused in this function).
  *
  * Return: The number of characters printed (excluding the null byte).
  */
-int _puts_binary(va_list args)
+int _puts_binary(va_list args, int flags)
 {
     unsigned int num = va_arg(args, unsigned int);
     int num_bits = sizeof(num) * 8;
