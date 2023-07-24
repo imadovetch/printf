@@ -43,8 +43,8 @@ int _printf(const char * const format, ...)
     while (format[i])
     {
         int x = i, spa;
-        if(format[i] == '%' && format[i + 1] == ' ' )
-            return count = -1;
+        /*if(format[i] == '%' && format[i + 1] == ' ' )
+            return count = -1;*/
         if (format[i] == '%' && format[i + 1] != ' '&& !format[i + 1]  )
         {        return count = -1;}
         
