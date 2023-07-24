@@ -13,7 +13,7 @@ int _printf(const char * const format, ...)
     int count = 0;
     int structsize;
     bool Bool;
-
+    bool HOOL;
     opera_t type[] = {
         {"c", _putchar_va_list, NULL},
         {"s", print_string, NULL},
@@ -35,19 +35,22 @@ int _printf(const char * const format, ...)
     structsize = sizeof(type) / sizeof(type[0]);
 
     va_start(args, format);
-    if (!format)
+    if (!format || (format[0] == '%' && !format[1]))
     {
         return (-1);
     }
-
+    
     while (format[i])
     {
         int x = i, spa;
+        if(format[i] == '%' && format[i + 1] == ' ' )
+            return count = -1;
+        if (format[i] == '%' && format[i + 1] != ' '&& !format[i + 1]  )
+        {        return count = -1;}
+        
 		
         if (format[x] == '%' && format[x + 1])
         {
-            
-            
 
             if (format[x] == '%' && format[x + 1] == '%')
             {
@@ -78,9 +81,12 @@ int _printf(const char * const format, ...)
 
             for (j = 0; j < structsize; j++)
             {
+                HOOL = true;
                 if (format[x] == '%' && format[x + 1] != type[j].key[0] && format[x + 1] != ' ')
                 {
                     Bool = true;
+                    HOOL = false;
+                    
                 }
                 if (format[x + 1] == type[j].key[0])
                 {
@@ -90,7 +96,8 @@ int _printf(const char * const format, ...)
                     break;
                 }
             }
-
+            if(HOOL == false)
+                count++;
             if (Bool == true)
             {
                 _putchar('%');
