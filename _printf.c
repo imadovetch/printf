@@ -59,7 +59,24 @@ int _printf(const char * const format, ...)
                 continue;
             }
 
-            
+            if (format[x + 1] == ' ' && format[x + 2])
+            {
+                for (spa = (x + 1); spa < 100; spa++)
+                {
+                    if (format[spa] == ' ')
+                    {
+                        if (spa == i + 1)
+                            _putchar(' ');
+                        x++;
+                    }
+                    else
+                    {
+                        i = x;
+                        break;
+                    }
+                }
+            }
+
             Bool = true;
 
             for (j = 0; j < structsize; j++)
