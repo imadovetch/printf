@@ -4,7 +4,6 @@
  * printf_rot13 - Encodes a string using the rot13-
  * -cipher and prints it to the console.
  * @args: Variadic list containing the string to be encoded.
- *
  * Return: The number of characters printed.
  */
 int printf_rot13(va_list args)
@@ -29,11 +28,13 @@ int printf_rot13(va_list args)
 				k = 1;
 			}
 		}
-			if (!k)
-			{
-				_putchar(s[i]);
-				counter++;
-			}
+
+		if (!k)
+		{
+			_putchar(s[i]);
+			counter++;
+		}
 	}
 	return (counter);
 }
+

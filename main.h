@@ -8,15 +8,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/* Add the declarations for the flag variables*/
-extern bool is_hash_flag_present;
-extern bool is_plus_flag_present;
-extern bool is_space_flag_present;
-
 typedef struct opera {
-    char *key;
-    int (*f)(va_list);
-    int (*f_char)(char);
+	char *key;
+	int (*f)(va_list);
+	int (*f_char)(char);
+
 } opera_t;
 
 
@@ -36,4 +32,6 @@ int _putS(va_list args);
 int _putP(va_list args);
 int print_octal(va_list args);
 int printf_rot13(va_list args);
+
 #endif
+

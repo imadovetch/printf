@@ -1,137 +1,120 @@
 #include "main.h"
-bool is_hash_flag_present = false;
-bool is_plus_flag_present = false;
-bool is_space_flag_present = false;
+
+
 /**
  * _printf - Custom printf function.
  * @format: The format string to print.
- *
+>>>>>>> simo
  * Return: The number of characters printed (excluding the null byte).
  */
 int _printf(const char * const format, ...)
 {
-    int i = 0;
-    int j;
-    int count = 0;
-    int structsize;
-    bool Bool;
-    bool HOOL;
+
+	int i = 0;
+	int j;
+	int count = 0;
+	int structsize;
+	bool Bool;
+	bool HOOL;
+	opera_t type[] = {
+		{"c", _putchar_va_list, NULL},
+		{"s", print_string, NULL},
+		{"i", _itoa, NULL},
+		{"d", _itoa, NULL},
+		{"x", print_hex, NULL},
+		{"X", print_HEX, NULL},
+		{"u", _puts_unsigned, NULL},
+		{"r", _puts_reversed, NULL},
+		{"b", _puts_binary, NULL},
+		{"S", _putS, NULL},
+		{"o", print_octal, NULL},
+		{"p", _putP, NULL},
+		{"R", printf_rot13, NULL}
+	};
+
+	va_list args;
+
+	structsize = sizeof(type) / sizeof(type[0]);
+
+	va_start(args, format);
+	if (!format || (format[0] == '%' && !format[1]))
+	{
+		return (-1);
+	}
+
+	while (format[i])
+	{
+		int x = i, spa;
+		if(format[i] == '%' && format[i + 1] == ' ' )
+			return count = -1;
+		if (format[i] == '%' && format[i + 1] != ' '&& !format[i + 1]  )
+		{        return count = -1;}
 
 
-    opera_t type[] = {
-        {"c", _putchar_va_list, NULL},
-        {"s", print_string, NULL},
-        {"i", _itoa, NULL},
-        {"d", _itoa, NULL},
-        {"x", print_hex, NULL},
-        {"X", print_HEX, NULL},
-        {"u", _puts_unsigned, NULL},
-        {"r", _puts_reversed, NULL},
-        {"b", _puts_binary, NULL},
-        {"S", _putS, NULL},
-        {"o", print_octal, NULL},
-        {"p", _putP, NULL},
-        {"R", printf_rot13, NULL}
-    };
+		if (format[x] == '%' && format[x + 1])
+		{
 
-    va_list args;
+			if (format[x] == '%' && format[x + 1] == '%')
+			{
+				count += _putchar(format[x]);
+				i += 2;
+				continue;
+			}
 
-    structsize = sizeof(type) / sizeof(type[0]);
+			if (format[x + 1] == ' ' && format[x + 2])
+			{
+				for (spa = (x + 1); spa < 100; spa++)
+				{
+					if (format[spa] == ' ')
+					{
+						if (spa == i + 1)
+							_putchar(' ');
+						x++;
+					}
+					else
+					{
+						i = x;
+						break;
+					}
+				}
+			}
 
-    va_start(args, format);
-    if (!format || (format[0] == '%' && !format[1]))
-    {
-        return (-1);
-    }
-    
-    while (format[i])
-    {
-        int x = i, spa;
-        if(format[i] == '%' && format[i + 1] == ' ' )
-            return count = -1;
-        if (format[i] == '%' && format[i + 1] != ' '&& !format[i + 1]  )
-        {        return count = -1;}
-        
-		
-        if (format[x] == '%' && format[x + 1])
-        {
+			Bool = true;
 
-            if (format[x] == '%' && format[x + 1] == '%')
-            {
-                count += _putchar(format[x]);
-                i += 2;
-                continue;
-            }
+			for (j = 0; j < structsize; j++)
+			{
+				HOOL = true;
+				if (format[x] == '%' && format[x + 1] != type[j].key[0] && format[x + 1] != ' ')
+				{
+					Bool = true;
+					HOOL = false;
 
-            if (format[x + 1] == ' ' && format[x + 2])
-            {
-                for (spa = (x + 1); spa < 100; spa++)
-                {
-                    if (format[spa] == ' ')
-                    {
-                        if (spa == i + 1)
-                            _putchar(' ');
-                        x++;
-                    }
-                    else
-                    {
-                        i = x;
-                        break;
-                    }
-                }
-            }
+				}
+				if (format[x + 1] == type[j].key[0])
+				{
+					Bool = false;
+					count += type[j].f(args);
+					i++;
+					break;
+				}
+			}
+			if(HOOL == false)
+				count++;
+			if (Bool == true)
+			{
+				_putchar('%');
+			}
+		}
+		else
+		{
+			_putchar(format[x]);
+			count++;
+		}
+		i++;
+	}
 
-            Bool = true;
+	va_end(args);
+	return (count);
 
-            for (j = 0; j < structsize; j++)
-            {
-                HOOL = true;
-                if (format[x] == '%' && format[x + 1] != type[j].key[0] && format[x + 1] != ' ')
-                {
-                    Bool = true;
-                    HOOL = false;
-                    
-                }
-                if (format[x + 1] == type[j].key[0])
-                {
-                    if (type[j].key[0] == 'x' || type[j].key[0] == 'X')
-                    {
-                        
-                        is_hash_flag_present = (format[x - 1] == '#');
-                    }
-                     else if (type[j].key[0] == 'o')
-                    {
-
-                        is_hash_flag_present = (format[x - 1] == '#');
-                    }
-                    else if (type[j].key[0] == 'd' || type[j].key[0] == 'i')
-                    {
-                       
-                        is_plus_flag_present = (format[x - 1] == '+');
-                        is_space_flag_present = (format[x - 1] == ' ');
-                    }
-                    Bool = false;
-                    count += type[j].f(args);
-                    i++;
-                    break;
-                }
-            }
-            if(HOOL == false)
-                count++;
-            if (Bool == true)
-            {
-                _putchar('%');
-            }
-        }
-        else
-        {
-            _putchar(format[x]);
-            count++;
-        }
-        i++;
-    }
-
-    va_end(args);
-    return (count);
 }
 

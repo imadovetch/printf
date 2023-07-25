@@ -2,15 +2,15 @@
 
 /**
  * _puts_unsigned - Prints an unsigned integer.
- * @args: A va_list with the unsigned integer to print as an argument.
- *
+ * @args: A va_list with the unsigned integer to print as an argument
  * Return: The number of characters printed (excluding the null byte).
  */
 int _puts_unsigned(va_list args)
 {
 	unsigned int n = va_arg(args, unsigned int);
 	int count = 0;
-    int i;
+
+	int i;
 
 	if (n == 0)
 	{

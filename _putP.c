@@ -3,15 +3,16 @@
 /**
  * _putP - Prints the address of a pointer in hexadecimal format.
  * @args: A va_list with the pointer to print as an argument.
- *
  * Return: The number of characters printed (excluding the null byte).
  */
 int _putP(va_list args)
 {
 	void *ptr = va_arg(args, void *);
 	unsigned long int value = (unsigned long int)ptr;
-    int i;
-    int result;
+
+	int i;
+	int result;
+
 
 	if (value == 0)
 	{

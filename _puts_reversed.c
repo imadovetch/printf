@@ -3,30 +3,30 @@
 /**
  * _puts_reversed - Prints a string in reverse order.
  * @args: A va_list with the string to print as an argument.
- *
  * Return: The number of characters printed (excluding the null byte).
  */
 int _puts_reversed(va_list args)
 {
-    char *str = va_arg(args, char*);
-    int length = 0;
-    char *start = str;
-    int i;
+	char *str = va_arg(args, char*);
+	int length = 0;
+	char *start = str;
+	int i;
 
-    /* Calculate the length of the string */
-    while (*start)
-    {
-        length++;
-        start++;
-    }
+	/* Calculate the length of the string */
+	while (*start)
+	{
+		length++;
+		start++;
+	}
 
-    
 
-    /* Now, print the string in reverse */
-    for (i = length - 1; i >= 0; i--)
-    {
-        _putchar(str[i]);
-    }
 
-    return (length); /* Return the length of the string. */
+	/* Now, print the string in reverse */
+	for (i = length - 1; i >= 0; i--)
+	{
+		_putchar(str[i]);
+	}
+
+	return (length); /* Return the length of the string. */
+
 }
