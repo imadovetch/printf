@@ -18,7 +18,7 @@ typedef struct opera {
 
 
 int _printf(const char * const format, ...);
-
+int parse_format(const char *format, va_list args);
 int _putchar_va_list(va_list args);
 int _putchar(char c);
 int print_string(va_list args);
@@ -32,6 +32,7 @@ int _putS(va_list args);
 int _putP(va_list args);
 int print_octal(va_list args);
 int printf_rot13(va_list args);
+int handle_spaces(const char *format, int i);
 
 #endif
 

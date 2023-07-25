@@ -53,7 +53,10 @@ int parse_format(const char *format, va_list args)
 
     while (format[i])
     {
+		bool HOOL, Bool;
+		int j;
         int x = i;
+		
         if (format[i] == '%' && format[i + 1] != ' ' && !format[i + 1])
         {
             return count = -1;
@@ -72,11 +75,11 @@ int parse_format(const char *format, va_list args)
             {
                 i = handle_spaces(format, i);
             }
+			 
+            
 
-            bool Bool = true;
-            bool HOOL;
-
-            for (int j = 0; j < structsize; j++)
+			Bool = true;
+            for (j = 0; j < structsize; j++)
             {
                 HOOL = true;
                 if (format[x] == '%' && format[x + 1] != type[j].key[0] && format[x + 1] != ' ')
