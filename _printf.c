@@ -33,23 +33,32 @@ int parse_format(const char *format, va_list args)
     int i = 0;
     int count = 0;
     int structsize;
+    opera_t type[] = {
+        {"c", _putchar_va_list, NULL},
+        {"s", print_string, NULL},
+        {"i", _itoa, NULL},
+        {"d", _itoa, NULL},
+        {"x", print_hex, NULL},
+        {"X", print_HEX, NULL},
+        {"u", _puts_unsigned, NULL},
+        {"r", _puts_reversed, NULL},
+        {"b", _puts_binary, NULL},
+        {"S", _putS, NULL},
+        {"o", print_octal, NULL},
+        {"p", _putP, NULL},
+        {"R", printf_rot13, NULL}
+    };
 
-opera_t type[] = {
-    {"c", _putchar_va_list, NULL},{"s", print_string, NULL},
-    {"i", _itoa, NULL},{"d", _itoa, NULL},{"x", print_hex, NULL},{"X", print_HEX, NULL},
-    {"u", _puts_unsigned, NULL},{"r", _puts_reversed, NULL},{"b", _puts_binary, NULL},
-    {"S", _putS, NULL},{"o", print_octal, NULL},
-    {"p", _putP, NULL},{"R", printf_rot13, NULL}
-};
     structsize = sizeof(type) / sizeof(type[0]);
+
     while (format[i])
     {
-		bool HOOL, Bool;
-		int j;
         int x = i;
-
         if (format[i] == '%' && format[i + 1] != ' ' && !format[i + 1])
+        {
             return count = -1;
+        }
+
         if (format[x] == '%' && format[x + 1])
         {
             if (format[x] == '%' && format[x + 1] == '%')
@@ -58,10 +67,16 @@ opera_t type[] = {
                 i += 2;
                 continue;
             }
+
             if (format[x + 1] == ' ' && format[x + 2])
+            {
                 i = handle_spaces(format, i);
-			Bool = true;
-            for (j = 0; j < structsize; j++)
+            }
+
+            bool Bool = true;
+            bool HOOL;
+
+            for (int j = 0; j < structsize; j++)
             {
                 HOOL = true;
                 if (format[x] == '%' && format[x + 1] != type[j].key[0] && format[x + 1] != ' ')
@@ -77,10 +92,14 @@ opera_t type[] = {
                     break;
                 }
             }
+
             if (HOOL == false)
                 count++;
-            if (Bool == true)           
+
+            if (Bool == true)
+            {
                 _putchar('%');
+            }
         }
         else
         {
@@ -89,6 +108,7 @@ opera_t type[] = {
         }
         i++;
     }
+
     return count;
 }
 
