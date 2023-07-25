@@ -10,7 +10,7 @@
 int _itoa(va_list args)
 {
 
-	int i = va_arg(args, int);
+	long int i = va_arg(args, int);
 	int j = 0;
 	char buffer[20]; /* Declare the variable here */
 	int index;
