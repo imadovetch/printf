@@ -41,4 +41,3 @@ int _puts_unsigned(va_list args)
 	}
 	return (count);
 }
-
