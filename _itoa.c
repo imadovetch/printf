@@ -1,35 +1,46 @@
 #include "main.h"
 
-int _itoa(va_list args) {
-    int i = va_arg(args, int);
-    int j = 0;
+/**
+ * _itoa - Converts an integer to a string and prints it.
+ * @args: A va_list with the integer to convert as an argument.
+ * Return: The number of characters printed (excluding the null byte).
+ */
+int _itoa(va_list args)
+{
+	int i = va_arg(args, int);
+	int j = 0;
+	char buffer[20]; /* Declare the variable here */
+	int index;
 
-    if (i == 0) {
-        _putchar('0');
-        return 1;
-    }
+	if (i == 0)
+	{
+		_putchar('0');
+		return 1;
+	}
 
-    if (i < 0) {
-        _putchar('-'); // Print the negative sign
-        j++; // Increment j to account for the negative sign
-        i = -i; // Convert the number to positive for processing
-    }
+	if (i < 0)
+	{
+		_putchar('-');
+		j++;
+		i = -i;
+	}
 
-    // Temporary buffer to store the digits in reverse order
-    char buffer[20];
-    int index = 0;
 
-    // Extract each digit from the number and store them in the buffer
-    while (i > 0) {
-        buffer[index++] = (i % 10) + '0';
-        i /= 10;
-    }
+	index = 0;
 
-    // Print the digits in the correct order
-    while (index > 0) {
-        _putchar(buffer[--index]);
-        j++;
-    }
 
-    return j; // Return the total number of characters printed
+	while (i > 0)
+	{
+		buffer[index++] = (i % 10) + '0';
+		i /= 10;
+	}
+
+
+	while (index > 0)
+	{
+		_putchar(buffer[--index]);
+		j++;
+	}
+
+	return j;
 }
