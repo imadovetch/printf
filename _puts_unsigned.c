@@ -35,12 +35,12 @@ int _puts_unsigned(va_list args)
 		while (temp > 0)
 		{
 			int digit = n / temp;
+
 			n %= temp;
 			temp /= 10;
 			_putchar('0' + digit);
 		}
 	}
-
-	return count;
+	return (count);
 }
 

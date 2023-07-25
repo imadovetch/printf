@@ -7,24 +7,22 @@
  */
 int print_string(va_list args)
 {
+	char *str;
+	int num_written = 0;
+	int i;
 
-    char *str;
-    int num_written = 0;
-    int i;
+	str = va_arg(args, char*);
+	if (!str)
+	{
+		num_written += write(1, "(null)", 6);
+		return (num_written);
+	}
 
-    str = va_arg(args, char*);
-    if (!str)
-    {
-        num_written += write(1, "(null)", 6);
-        return (num_written);
-    }
+	for (i = 0; str[i]; i++)
+	{
+		_putchar(str[i]);
+		num_written++;
+	}
 
-    for (i = 0; str[i]; i++)
-    {
-
-            _putchar(str[i]);
-            num_written++;
-    }
-
-    return (num_written);
+	return (num_written);
 }

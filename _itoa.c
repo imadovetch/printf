@@ -18,7 +18,7 @@ int _itoa(va_list args)
 	if (i == 0)
 	{
 		_putchar('0');
-		return 1;
+		return (1);
 	}
 
 	if (i < 0)
@@ -45,6 +45,6 @@ int _itoa(va_list args)
 		j++;
 	}
 
-	return j;
+	return (j);
 
 }

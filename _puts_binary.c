@@ -3,8 +3,6 @@
 /**
  * _puts_binary - Prints the binary representation of an unsigned integer.
  * @args: A va_list with the unsigned integer to print as an argument.
-
->>>>>>> simo
  * Return: The number of characters printed (excluding the null byte).
  */
 int _puts_binary(va_list args)
@@ -23,7 +21,7 @@ int _puts_binary(va_list args)
 		chars_printed++;
 	}
 
-	return chars_printed;
+	return (chars_printed);
 
 }
 

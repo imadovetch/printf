@@ -16,19 +16,22 @@ int _putS(va_list args)
 
 	while (str[len] != '\0')
 	{
-		if (str[len] == '\n') {
+		if (str[len] == '\n')
+		{
 			_putchar('\\');
 			_putchar('x');
 			_putchar('0');
 			_putchar('A');
 			num_written += 4;
-		} else {
+		}
+		else
+		{
 			_putchar(str[len]);
 			num_written++;
 		}
 		len++;
 	}
 
-	return num_written;
+	return (num_written);
 }
 

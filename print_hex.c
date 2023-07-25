@@ -17,13 +17,15 @@ int print_hex(va_list args)
 	if (num == 0)
 	{
 		_putchar('0');
-		return 1;
+		return (1);
 	}
 
 	while (num > 0)
 	{
 		int remainder = num % 16;
-		buffer[index++] = (remainder < 10) ? (remainder + '0') : (remainder - 10 + 'a');
+
+		buffer[index++] = (remainder < 10) ? (remainder + '0') 
+		: (remainder - 10 + 'a');
 		num /= 16;
 	}
 
@@ -31,12 +33,10 @@ int print_hex(va_list args)
 	while (index > 0)
 	{
 		int written = _putchar(buffer[--index]);
+
 		if (written > 0)
-		{
 			num_written += written;
-		}
 	}
 
-	return num_written;
-
+	return (num_written);
 }

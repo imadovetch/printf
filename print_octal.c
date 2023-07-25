@@ -7,7 +7,6 @@
  */
 int print_octal(va_list args)
 {
-
 	unsigned int num = va_arg(args, unsigned int);
 	char buffer[22];
 	int num_written = 0;
@@ -17,13 +16,14 @@ int print_octal(va_list args)
 	if (num == 0)
 	{
 		_putchar('0');
-		return 1;
+		return (1);
 	}
 
 
 	while (num > 0)
 	{
 		int remainder = num % 8;
+
 		buffer[index++] = remainder + '0';
 		num /= 8;
 	}
@@ -35,5 +35,5 @@ int print_octal(va_list args)
 		num_written++;
 	}
 
-	return num_written;
+	return (num_written);
 }
