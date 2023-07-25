@@ -13,6 +13,13 @@ int print_HEX(va_list args)
     int index = 0;
     int num_written;
 
+    if (is_hash_flag_present)
+    {
+        _putchar('0');
+        _putchar('X');
+        num_written = 2;
+    }
+
     do
     {
         int remainder = num % 16;

@@ -1,5 +1,7 @@
 #include "main.h"
-
+bool is_hash_flag_present = false;
+bool is_plus_flag_present = false;
+bool is_space_flag_present = false;
 /**
  * _printf - Custom printf function.
  * @format: The format string to print.
@@ -14,6 +16,8 @@ int _printf(const char * const format, ...)
     int structsize;
     bool Bool;
     bool HOOL;
+
+
     opera_t type[] = {
         {"c", _putchar_va_list, NULL},
         {"s", print_string, NULL},
@@ -90,6 +94,22 @@ int _printf(const char * const format, ...)
                 }
                 if (format[x + 1] == type[j].key[0])
                 {
+                    if (type[j].key[0] == 'x' || type[j].key[0] == 'X')
+                    {
+                        
+                        is_hash_flag_present = (format[x - 1] == '#');
+                    }
+                     else if (type[j].key[0] == 'o')
+                    {
+
+                        is_hash_flag_present = (format[x - 1] == '#');
+                    }
+                    else if (type[j].key[0] == 'd' || type[j].key[0] == 'i')
+                    {
+                       
+                        is_plus_flag_present = (format[x - 1] == '+');
+                        is_space_flag_present = (format[x - 1] == ' ');
+                    }
                     Bool = false;
                     count += type[j].f(args);
                     i++;

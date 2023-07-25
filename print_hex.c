@@ -9,15 +9,21 @@
 int print_hex(va_list args)
 {
     unsigned int num = va_arg(args, unsigned int);
-    int num_written = 0; /* Declare the variable here */
+    int num_written = 0;
     char buffer[20];
     int index = 0;
 
-    /* Handle the case when the number is 0 separately */
     if (num == 0)
     {
         _putchar('0');
         return 1;
+    }
+
+    if (is_hash_flag_present)
+    {
+        _putchar('0');
+        _putchar('x');
+        num_written += 2;
     }
 
     while (num > 0)

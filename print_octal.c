@@ -13,11 +13,16 @@ int print_octal(va_list args)
     int num_written = 0;
     int index = 0;
 
-
     if (num == 0)
     {
         _putchar('0');
         return 1;
+    }
+
+    if (is_hash_flag_present)
+    {
+        _putchar('0');
+        num_written++;
     }
 
 

@@ -8,11 +8,12 @@
  */
 int _itoa(va_list args)
 {
-    int i = va_arg(args, int);
+     int i = va_arg(args, int);
     int j = 0;
-    char buffer[20]; /* Declare the variable here */
-    int index;
+    char buffer[20];
+    int index = 0;
     
+
     if (i == 0)
     {
         _putchar('0');
@@ -24,6 +25,16 @@ int _itoa(va_list args)
         _putchar('-');
         j++;
         i = -i;
+    }
+    else if (is_plus_flag_present)
+    {
+        _putchar('+');
+        j++;
+    }
+    else if (is_space_flag_present)
+    {
+        _putchar(' ');
+        j++;
     }
 
     
