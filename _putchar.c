@@ -20,6 +20,6 @@ int _putchar(char c)
 int _putchar_va_list(va_list args)
 {
 	char c = va_arg(args, int);
-	
+
 	return (write(1, &c, 1));
 }

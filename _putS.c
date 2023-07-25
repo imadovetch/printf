@@ -3,8 +3,6 @@
 /**
  * _putS - Prints a string (char array) to the standard output (stdout).
  * @args: A va_list with the string to print as an argument.
-
->>>>>>> simo
  * Return: The number of characters written (excluding the null byte).
  */
 int _putS(va_list args)

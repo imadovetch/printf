@@ -9,7 +9,6 @@ int _puts_unsigned(va_list args)
 {
 	unsigned int n = va_arg(args, unsigned int);
 	int count = 0;
-
 	int i;
 
 	if (n == 0)
@@ -20,14 +19,13 @@ int _puts_unsigned(va_list args)
 	else
 	{
 		unsigned int temp = n;
-		/* Calculate the number of digits in n */
+
 		while (temp != 0)
 		{
 			count++;
 			temp /= 10;
 		}
 
-		/* Print each digit */
 		temp = 1;
 		for (i = 1; i < count; i++)
 			temp *= 10;

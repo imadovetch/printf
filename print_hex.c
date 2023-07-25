@@ -24,7 +24,7 @@ int print_hex(va_list args)
 	{
 		int remainder = num % 16;
 
-		buffer[index++] = (remainder < 10) ? (remainder + '0') 
+		buffer[index++] = (remainder < 10) ? (remainder + '0')
 		: (remainder - 10 + 'a');
 		num /= 16;
 	}

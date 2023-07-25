@@ -3,8 +3,6 @@
 /**
  * print_HEX - Prints an unsigned integer in hexadecimal format
  * @args: A va_list with the unsigned integer to print as an argument.
-
->>>>>>> simo
  * Return: The number of characters printed (excluding the null byte).
  */
 int print_HEX(va_list args)
@@ -14,7 +12,7 @@ int print_HEX(va_list args)
 	int index = 0;
 	int num_written;
 
-	do{
+	do {
 		int remainder = num % 16;
 
 		buffer[index++] = (remainder < 10) ? (remainder + '0') :

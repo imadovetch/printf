@@ -3,8 +3,6 @@
 /**
  * _itoa - Converts an integer to a string and prints it.
  * @args: A va_list with the integer to convert as an argument.
-
->>>>>>> simo
  * Return: The number of characters printed (excluding the null byte).
  */
 int _itoa(va_list args)

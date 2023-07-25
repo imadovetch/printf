@@ -26,7 +26,7 @@ int _putP(va_list args)
 		while (value > 0)
 		{
 			int digit = value % 16;
-			
+
 			buffer[count++] = (digit < 10) ? digit + '0' : digit - 10 + 'a';
 			value /= 16;
 		}
