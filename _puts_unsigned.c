@@ -7,7 +7,7 @@
  */
 int _puts_unsigned(va_list args)
 {
-	unsigned int n = va_arg(args, unsigned int);
+	int n = va_arg(args, int);
 	int count = 0;
 	int i;
 
@@ -18,7 +18,7 @@ int _puts_unsigned(va_list args)
 	}
 	else
 	{
-		unsigned int temp = n;
+		int temp = n;
 
 		while (temp != 0)
 		{
@@ -41,3 +41,4 @@ int _puts_unsigned(va_list args)
 	}
 	return (count);
 }
+
