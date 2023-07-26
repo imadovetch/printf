@@ -13,8 +13,7 @@
  * @key: The format specifier.
  * @f: A pointer to the function that handles the format specifier.
  * @f_char: A pointer to the function that handles special character cases.
- * Description: This struct holds a format specifier, its corresponding function
- *              pointer, and a function pointer for special character cases.
+ * Description: This struct holds a format specifier
  */
 typedef struct opera
 {
@@ -43,5 +42,5 @@ int print_octal(va_list args);
 int printf_rot13(va_list args);
 int handle_spaces(const char *format, int i);
 int handle_format(const char *format, int *i, va_list args,
- opera_t type[], int structsize);
+opera_t type[], int structsize);
 #endif
