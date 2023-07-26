@@ -25,7 +25,7 @@ int print_string(va_list args);
 int _itoa(va_list args);
 int print_hex(va_list args);
 int print_HEX(va_list args);
-int _puts_unsigned(va_list args);
+int _puts_unsined(va_list args);
 int _puts_reversed(va_list args);
 int _puts_binary(va_list args);
 int _putS(va_list args);

@@ -5,9 +5,9 @@
  * @args: A va_list with the unsigned integer to print as an argument
  * Return: The number of characters printed (excluding the null byte).
  */
-int _puts_unsigned(va_list args)
+int _puts_unsined(va_list args)
 {
-	int n = va_arg(args, int);
+	unsigned int n = va_arg(args, int);
 	int count = 0;
 	int i;
 
@@ -18,7 +18,7 @@ int _puts_unsigned(va_list args)
 	}
 	else
 	{
-		int temp = n;
+		unsigned int temp = n;
 
 		while (temp != 0)
 		{
