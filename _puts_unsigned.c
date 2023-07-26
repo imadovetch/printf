@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _puts_unsigned - Prints an unsigned integer.
+ * _puts_unsined - Prints an unsigned integer.
  * @args: A va_list with the unsigned integer to print as an argument
  * Return: The number of characters printed (excluding the null byte).
  */
